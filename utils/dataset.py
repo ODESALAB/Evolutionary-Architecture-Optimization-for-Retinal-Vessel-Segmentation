@@ -5,6 +5,11 @@ from torch.utils.data import Dataset
 from torchvision.transforms import Compose, RandomHorizontalFlip, RandomVerticalFlip
 from utils.helpers import Fix_RandomRotation
 
+#====================================================================
+# This part of the code is based on FR-UNet
+# from https://github.com/lseventeen/FR-UNet
+# Liu, W., Yang, H., Tian, T., Cao, Z., Pan, X., Xu, W., ... & Gao, F. (2022). Full-resolution network and dual-threshold iteration for retinal vessel and coronary angiograph segmentation. IEEE Journal of Biomedical and Health Informatics, 26(9), 4623-4634.
+# ===================================================================
 
 class vessel_dataset(Dataset):
     def __init__(self, path, mode, is_val=False, split=None, de_train=False):
