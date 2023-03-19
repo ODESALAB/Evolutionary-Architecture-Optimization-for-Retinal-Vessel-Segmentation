@@ -2,6 +2,12 @@ import torch
 import numpy as np
 from sklearn.metrics import roc_auc_score
 
+#====================================================================
+# This part of the code is based on FR-UNet
+# from https://github.com/lseventeen/FR-UNet
+# Liu, W., Yang, H., Tian, T., Cao, Z., Pan, X., Xu, W., ... & Gao, F. (2022). Full-resolution network and dual-threshold iteration for retinal vessel and coronary angiograph segmentation. IEEE Journal of Biomedical and Health Informatics, 26(9), 4623-4634.
+# ===================================================================
+
 def preprocess(predict, target, threshold=0.5):
     predict = torch.sigmoid(predict).cpu().detach().numpy().flatten()
     
