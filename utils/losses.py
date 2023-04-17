@@ -82,20 +82,6 @@ class CombinedLoss(nn.Module):
         elif self.loss_type == 'dice + jaccard + bce':
             dice = self.dice_loss(output, targets)
             bce = self.bce_loss(torch.sigmoid(output), targets)
-            #focal = self.focal_loss(torch.sigmoid(output), targets)
             jaccard = self.jaccard_loss(output, targets)
 
             return dice + jaccard + bce
-
-
-        """
-        dice = self.dice_loss(output, targets)
-        if self.long_runs == False:
-            return dice
-        else:
-            bce = self.bce_loss(torch.sigmoid(output), targets)
-            focal = self.focal_loss(torch.sigmoid(output), targets)
-            jaccard = self.jaccard_loss(output, targets)
-
-            return dice + jaccard + bce
-        """
