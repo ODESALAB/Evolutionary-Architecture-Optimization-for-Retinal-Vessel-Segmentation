@@ -14,17 +14,6 @@ from utils.dataset import vessel_dataset
 from models.unet import *
 from utils.save_best_model import BestModelCheckPoint
 
-"""
-def getBestModelNumbers(path="results"):
-    result = []
-    for file in glob.glob(f"{path}/*.pkl"):
-        with open(file, "rb") as f:
-            data = pickle.load(f)
-            result.append((data.fitness, data.cost, data.solNo))
-
-    return sorted(result, key=lambda x: x[0])[-5:]
-"""
-
 def getBestModelNumbers(path="results"):
     result = []
     for file in glob.glob(f"{path}/*.pkl"):
@@ -56,14 +45,6 @@ def seed_torch(seed=42):
     torch.cuda.manual_seed(seed)
     torch.backends.cudnn.deterministic = True
 
-# 602 > 555 > 560 > 114 > 490 - ga drive patch
-# 499 > 86 > 505 > 517 > 440 - ode drive patch
-# 442 > 495 > 295 > 257 > 470 - ode chasedb1 patch
-# 340 > 575 > 271 > 359 > 411 - ode dca1 patch
-# 369 > 320 > 539 > 299 > 232 - ga  dca1 patch
-# 237 > 121 > 655 > 531 > 678 - ode chuac patch ubuntu
-# 334 > 525 > 462 > 471 > 342 - ode chuac patch windows
-# 118 > 501 > 559 > 581 > 114 - ga chuac patch
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -72,8 +53,6 @@ path = "results/ode_drive_patch_42"
 data_path = "DataSets/DRIVE"
 batch_size = 128
 
-#bestSol = getBestModelNumbers(path=path) 
-#print(bestSol)
 
 seed = 0
 modelNo = 517
@@ -87,11 +66,7 @@ model = None
 with open(f"{path}/model_{modelNo}.pkl", "rb") as f:
     model = GPU_Unpickler(f).load()
 
-#model = readPickleFile(modelNo, path)
-
-#from torchinfo import summary
 print("Model No:", model.solNo, "Seed:", seed)
-#summary(model, input_size=(1, 1, 1008, 1008))
 
 model.reset()
 model.to(device)
